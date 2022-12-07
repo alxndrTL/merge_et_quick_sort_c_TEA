@@ -4,7 +4,7 @@
 \usepackage{amssymb}
 \usepackage{epstopdf}
 
-\title{Compte-rendu du TEA "Le compte est bon"}
+\title{Compte-rendu du TEA n°3}
 \author{\textsc{Valentin GAUTHIER}\\ Alexandre TORRES--LEGUET}
 
 \begin{document}
@@ -13,26 +13,15 @@
 \section{Introduction}
 %présentation du problème, le contexte
 
-\quad \quad Ce compte-rendu présente le travail de recherche réalisé pour l’élaboration du code permettant la résolution du jeu "le compte est bon". Après le TP de la séance 2 d’AAP, nous avions à disposition plusieurs fichiers que nous avons  utilisé dans la réalisation du code. Parmi eux, les fichiers :
+\quad \quad Ce compte-rendu présente le travail réalisé dans le cadre du TEA 3 de l'enseignement d'AAP, qui se concentre sur le tri rapide et le tri fusion en \textsc{C}.
+ 
+Nous avons vu en TD le principe de fonctionnement et le code de ces tris en \textsc{C}, notre tâche a alors été dans un premier temps d'adapter ce travail afin de le rendre compatible avec les outils de création de graphiques, i.e. avec la structure de données \texttt{T\textunderscore data}. 
 
-\begin{itemize}
-\item \texttt{list.h} et \texttt{list.c} qui implémentent les listes chaînées.
-\item \texttt{stack\textunderscore cs.h} et \texttt{stack\textunderscore cs.c} qui implémentent les piles en contigu statique.
-\item \texttt{stack\textunderscore cd.h} et \texttt{stack\textunderscore cd.c} qui implémentent les piles en contigu dynamique.
-\item \texttt{stack\textunderscore cld.h} et \texttt{stack\textunderscore cld.c} qui implémentent les piles avec une liste chaînée.
-\end{itemize}
+Dans un second temps, nous avons implémenté les fonctions \texttt{fusionsort} et \texttt{quicksort} qui respectent le même prototype que la fonction \texttt{qsort} disponible nativement dans \textsc{C}. (sous réserve d'inclure \texttt{stdlib.h})
 
-Ces fichiers n’ont pas eu à être modifié. 
+Enfin, nous avons implémenter le tri fusion sur des listes chaînées.
 
-Nous avons eu a créer ou modifier les fichiers :
 
-\begin{itemize}
-\item \texttt{elt.h} et \texttt{elt.c} pour l'implémentation du \texttt{T\textunderscore elt} RPN, qui est une structure possédant 2 champs, dont l'un deux est défini par un ensemble de constantes symboliques également définies dans \texttt{elt.h}. Ils présentent également la fonction toString pour afficher sous forme de string un \texttt{T\textunderscore elt} RPN et genElt pour generer un \texttt{T\textunderscore elt} RPN arbitraire.
-\item \texttt{rpn.c} et \texttt{rpn.h} pour l'implémentation des fonctions \texttt{s2list}, \texttt{rpn\textunderscore eval} et \texttt{affiche\textunderscore operations\textunderscore rpn}, fonction qui affiche les opérations effectuées lors de l'évaluation d'une RPN, dans le format demandé dans l'énoncé. 
-\item \texttt{stack\textunderscore choix.h} qui permet de décider le type d’implémentation souhaité pour les piles (cs, cd, ou cld)
-\item \texttt{rec.h} et \texttt{rec.c} où réside l'algorithme de parcours en profondeur à la volée pour chercher la meilleure RPN.
-\item \texttt{main.c} pour gérer le programme (et notamment les paramètres passés correspondant aux cartons tirés et à la cible)
-\end{itemize}
 
 \section{Développement}
 %organisation du programme
@@ -72,9 +61,6 @@ Il est intéressant de remarquer que ces temps d'exécutions sont bien meilleurs
 Notre algorithme, étant donné un RPN, cherche à lui ajouter un à un tous les opérateurs, puis un à un les cartons restants.
 Une amélioration que nous avons effectué est que, si jamais un RPN peut être évalué sous forme d'une valeur (exemple : $1 \; 2 \; +$ qui peut être évalué à $3$) alors lui ajouter un opérateur le rendra nécessairement invalide. Sur le schéma, on voit que cette amélioration évite l'exploration inutile d'un grand nombre de noeuds de l'arbre.
 
-\begin{center}
-\includegraphics[scale=0.7]{images/arbre_complete.png}
-\end{center}
 
 \section{Conclusion}
 %analyser les problèmes, perspectives
