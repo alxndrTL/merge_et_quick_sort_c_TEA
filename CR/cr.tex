@@ -47,13 +47,13 @@ $$
 où \texttt{n} désigne le nombre d'éléments à considérer à partir du début du tableau passé. Il faut donc, au moment d'appeler cette deuxième fonction, envoyer la bonne partie du tableau (et non pas le tableau entier comme c'est le cas pour la première fonction). \\
 
 Nous avons effectué ensemble la fonction \texttt{fusionsort} une fois la fonction \texttt{quicksort} implémentée car cette dernière nous a paru plus abordable pour gérer le type \texttt{void *} que l'on récupère en entrée.
+Le développement de \texttt{fusionsort} a requis celui de la fonction \texttt{merge} qui permet de fusionner deux tableaux triés. Pour faire cela, nous avons été obligé de copier dans des tableaux temporaires (\texttt{L} et \texttt{R}) les données à fusionner. Nous aidant des considérations faites pendant le développement de \texttt{quicksort}, nous nous sommes beaucoup basés sur la fonction \texttt{memcpy}.
 
 \subsection{Tri rapide}
 
 \quad \quad Le dossier \texttt{tri\textunderscore rapide} recense notre travail relatif au tri fusion sur un tableau. \\
 
 Le même travail de conversion a été effectué afin de rendre compatible la fonction vue en TD au type \texttt{T\textunderscore data}. \\
-
 
 La fonction \texttt{quicksort} reprend les mêmes idées que \texttt{tri\textunderscore rapide}. Cependant, l'implémentation concrète du tri a été amené à changer. La plus grosse difficulté rencontré a été que le tableau passé en entrée est de type \texttt{void *} (i.e. type non déterminé).
 Cela a notamment posé un problème dans la fonction annexe \texttt{echanger} qui a pour but d'échanger 2 éléments d'un tableau. En effet, le compilateur nous empêche d'assigner une valeur à type \texttt{void *} : la solution pour pallier à cela a été d'utiliser la fonction native \texttt{memcpy} afin de ne pas avoir à assigner une valeur. 
@@ -90,37 +90,16 @@ Concernant l'organisation des tâches au sein du groupe, Valentin s'est chargé 
 Enfin, au cours du début de la semaine suivante, nous avons pu nous réunir afin de réfléchir à adapter et implémenter l'algorithme de tri fusion sur une liste chaînée. Pour cela, nous sommes revenus sur la séance de TP antécédente pendant laquelle nous avions implémenté le type de liste chaînée (fichiers \texttt{list.h} et \texttt{list.c}).
 
 
-
-
 \section{Résultats}
 %présentation des résultats, jeux d'essais, analyse, temps d'exec...
-
-Voici, pour 2 jeux d'essais, les temps d'exécutions constatés sur l'une de nos machines (par moyenne).
-Le premier exemple correspond à une cible parfaite, tandis que le second ne peut qu'être approché, d'où la longueur de l'exécution.
-
-\begin{center}
-\begin{tabular}{||c c c||} 
- \hline
- cartons & cible & temps \\ [0.5ex] 
- \hline\hline
- 3 5 7 9 25 50 & 788 & 1.2s \\ 
- \hline
- 2 2 3 4 6 10 & 631 & 23.6s \\ [1ex] 
-\hline
-\end{tabular}
-\end{center}
-
-Il est intéressant de remarquer que ces temps d'exécutions sont bien meilleurs que ceux constatés avec notre implémentation \textsc{Python}.
-
-\section{Schéma d'exploration}
-
-Notre algorithme, étant donné un RPN, cherche à lui ajouter un à un tous les opérateurs, puis un à un les cartons restants.
-Une amélioration que nous avons effectué est que, si jamais un RPN peut être évalué sous forme d'une valeur (exemple : $1 \; 2 \; +$ qui peut être évalué à $3$) alors lui ajouter un opérateur le rendra nécessairement invalide. Sur le schéma, on voit que cette amélioration évite l'exploration inutile d'un grand nombre de noeuds de l'arbre.
-
+-comportement de nos algos sur des tableaux de grande taille (MAX\textunderscore ELT) \\
+-tri rapide : mettre en évidence sa dégénérence \\
+-tri rapide : performances une fois la dégénérence résoluée \\
+-comparer performances avec qsort 
 
 \section{Conclusion}
 %analyser les problèmes, perspectives
 
-\quad \quad Au terme du travail, il vient que notre programme semble fonctionner grâce à plusieurs tests tous réalisés avec justesse. Nous restons conscients que c'est un algorithme de type "glouton".
+\quad quad cc
 
 \end{document}  
