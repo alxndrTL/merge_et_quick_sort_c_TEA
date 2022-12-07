@@ -108,8 +108,8 @@ void merge(void * arr, int left, int mid, int right, size_t size, int (comp)(con
 	int n2 = right - mid;
 
 	// on crée les 2 tableaux temporaires
-	void *L = malloc(n1 * size);
-	void *R = malloc(n2 * size);
+	void * L = malloc(n1 * size);
+	void * R = malloc(n2 * size);
 
 	// on copie dans ces tableaux avec memcpy(desination, source, size source)
 	memcpy(L, arr + left * size, n1 * size);

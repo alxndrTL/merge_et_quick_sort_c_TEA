@@ -28,13 +28,69 @@ Enfin, nous avons implémenter le tri fusion sur des listes chaînées.
 %organisation du groupe (qui a fait quoi)
 %difficultés
 
-\quad \quad Dans le déroulé de notre travail, il s’est tout d’abord agit de revoir le cours en profondeur pour s’assurer de maîtriser les nouvelles définitions de types, structures et manières d’implémenter sous \textsc{C} pour plus d’efficacité lors de la réalisation pratique. Cette phase de théorie aura durée l’ensemble du weekend (26 et 27/11). Ensuite, Alexandre s’est chargé de rédigé un premier code en \textsc{Python} pour se faire une première idée de l'algorithme proposé. Puis le lundi 28/11, nous nous sommes réunis pour décider des fichiers et exercices à disposition dans le TP que nous pouvions utiliser (intégralement, en partie ou plus ou moins modifié) pour le TEA. L’après midi du lundi aura suffit pour que nous codions les fonctions nécessaires pour la partie 1 du TEA . Sur cette partie Alexandre s’est chargé des fichiers \texttt{rpn.c} et \texttt{rpn.h}, et Valentin s’est lui occupé de la modification des fichiers \texttt{elt.c} et \texttt{elt.h}.
+\subsection{Tri fusion}
 
-Puis pour la partie 2, nous nous sommes réunies rapidement mardi pour décider qui ferait quelle partie (implémentation de \texttt{rec.c} ou de \texttt{main.c}) et pour discuter de nos premières idées sur les fonctions. Alexandre est donc partie sur la réalisation de la fonction de recherche en profondeur et Valentin le fichier \texttt{main.c}. Nous avons décider de réaliser ce travail le soir même pour s’assurer d’avoir le temps de corriger les erreurs le lendemain, avant la remise du TEA.
+\quad \quad Le dossier \texttt{tri\textunderscore fusion} recense notre travail relatif au tri fusion sur un tableau. \\
 
-Nous avons rencontré quelques difficultés lors de la manipulation des chaînes de caractères, notamment pour la concaténation (nécessaire lors du parcours en profondeur) ou encore pour convertir des nombres en chaîne de caractère ou vice-versa. Egalement, il a fallu s'accorder sur les conventions prises lors de la Partie 1 (que renvoie \texttt{rpn\textunderscore eval} en cas d'une RPN non valide ? comment le détecter ? etc...) pour effectuer la Partie 2 puisque cette seconde partie se base sur les fonctions développées dans la première.
+Pour cette partie, la première partie du travail a été de transformer la fonction d'en-tête
 
-Un autre point de discussion important a été celui de la représentation des cartons restants. Nous avons au départ penser à utiliser une liste, mais nous nous sommes rendus compte par la suite que avoir accès qu'à l'élément en tête de liste allait rendre inutilement compliqué la boucle à faire sur les cartons restants. Nous avons donc décidé de passer, lors des appels récursifs, un tableau d'entiers ainsi que la longueur de ce tableau.
+$$
+\texttt{void tri\textunderscore fusion(T\textunderscore elt t [], int debut, int fin)}
+$$
+
+en la fonction
+
+$$
+\texttt{void tri\textunderscore fusion(T\textunderscore data d, int n)}
+$$
+
+où \texttt{n} désigne le nombre d'éléments à considérer à partir du début du tableau passé. Il faut donc, au moment d'appeler cette deuxième fonction, envoyer la bonne partie du tableau (et non pas le tableau entier comme c'est le cas pour la première fonction). \\
+
+Nous avons effectué ensemble la fonction \texttt{fusionsort} une fois la fonction \texttt{quicksort} implémentée car cette dernière nous a paru plus abordable pour gérer le type \texttt{void *} que l'on récupère en entrée.
+
+\subsection{Tri rapide}
+
+\quad \quad Le dossier \texttt{tri\textunderscore rapide} recense notre travail relatif au tri fusion sur un tableau. \\
+
+Le même travail de conversion a été effectué afin de rendre compatible la fonction vue en TD au type \texttt{T\textunderscore data}. \\
+
+
+La fonction \texttt{quicksort} reprend les mêmes idées que \texttt{tri\textunderscore rapide}. Cependant, l'implémentation concrète du tri a été amené à changer. La plus grosse difficulté rencontré a été que le tableau passé en entrée est de type \texttt{void *} (i.e. type non déterminé).
+Cela a notamment posé un problème dans la fonction annexe \texttt{echanger} qui a pour but d'échanger 2 éléments d'un tableau. En effet, le compilateur nous empêche d'assigner une valeur à type \texttt{void *} : la solution pour pallier à cela a été d'utiliser la fonction native \texttt{memcpy} afin de ne pas avoir à assigner une valeur. 
+
+\subsection{Tri rapide sur une liste chaînée}
+
+\quad \quad Le dossier \texttt{tri\textunderscore fusion\textunderscore listes} recense notre travail relatif au tri fusion sur une liste chaînée.
+
+Nous nous sommes d'abord concentré sur la fonction \texttt{split}, qui a pour but de diviser en 2 moitié une liste chaînée. Cette fonction, au lieu de retourner 2 valeurs qui sont les têtes des 2 listes, modifie 2 pointeurs (\texttt{T\textunderscore node **front} et \texttt{T\textunderscore node **back}) qui, une fois la fonction terminée, pointeront sur les 2 listes divisées.
+
+Voici un schéma explicatif qui montre le déroulement de cette division : 
+
+\begin{center}
+\includegraphics[scale=0.25]{images/2.jpg}
+\end{center}
+
+\texttt{s} et \texttt{f} correspondent aux variables \texttt{slow} et \texttt{fast} de notre code : ces pointeurs parcourent la liste, mais un le fait de manière "lente" (une maille à la fois) et l'autre le fait plus rapidement (deux mailles à la fois). Il s'en suit que, lorsqu'on les fait parcourir la liste, à la fin, lorsque \texttt{f} atteint le bout de la liste, \texttt{s} se trouve au milieu de la liste. On s'en sert alors pour découper la liste en deux. \\
+
+
+La fonction \texttt{merge} fusionne 2 listes chaînées supposées triées. Le principe est le même qu'avec le tableau : on compare les premiers éléments de chacun des deux listes à fusionner, on sélectionne le petit, puis on recommence... jusqu'à épuisement des deux listes. \\
+
+La fonction \texttt{merge\textunderscore sort} se tâche simplement de diviser la liste d'entrée, trier récursivement les deux listes obtenues, et de les fusionner. \\
+
+Voici un schéma permettant d'illustrer le tri fusion sur une liste chaînée :
+
+\begin{center}
+\includegraphics[scale=0.25]{images/1.jpg}
+\end{center}
+
+\subsection{Organisation - Gestion de projet}
+
+Concernant l'organisation des tâches au sein du groupe, Valentin s'est chargé de la partie concernant le tri fusion et Alexandre celle du tri rapide. Ce travail a été opéré le week-end qui a suivi notre séance de TP du vendredi.
+
+Enfin, au cours du début de la semaine suivante, nous avons pu nous réunir afin de réfléchir à adapter et implémenter l'algorithme de tri fusion sur une liste chaînée. Pour cela, nous sommes revenus sur la séance de TP antécédente pendant laquelle nous avions implémenté le type de liste chaînée (fichiers \texttt{list.h} et \texttt{list.c}).
+
+
+
 
 \section{Résultats}
 %présentation des résultats, jeux d'essais, analyse, temps d'exec...

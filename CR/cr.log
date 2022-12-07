@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.23)  7 DEC 2022 21:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.23)  7 DEC 2022 22:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -204,39 +204,98 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 11.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (66.9477pt too wide) in paragraph at lines 37--38
-[]\OT1/cmtt/m/n/10.95 rpn.c \OT1/cmr/m/n/10.95 et \OT1/cmtt/m/n/10.95 rpn.h \OT
-1/cmr/m/n/10.95 pour l'impl^^Sementation des fonc-tions \OT1/cmtt/m/n/10.95 s2l
-ist\OT1/cmr/m/n/10.95 , \OT1/cmtt/m/n/10.95 rpn[]eval \OT1/cmr/m/n/10.95 et \OT
-1/cmtt/m/n/10.95 affiche[]operations[]rpn\OT1/cmr/m/n/10.95 ,
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
+
  []
 
 [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] (./cr.aux) ) 
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
+
+ []
+
+
+Overfull \hbox (31.55688pt too wide) in paragraph at lines 58--60
+[]\OT1/cmr/m/n/10.95 La fonc-tion \OT1/cmtt/m/n/10.95 quicksort \OT1/cmr/m/n/10
+.95 reprend les m^emes id^^Sees que \OT1/cmtt/m/n/10.95 tri[]rapide\OT1/cmr/m/n
+/10.95 . Cepen-dant, l'impl^^Sementation
+ []
+
+<images/2.jpg, id=13, 1927.2pt x 1084.05pt>
+File: images/2.jpg Graphic file (type jpg)
+<use images/2.jpg>
+Package pdftex.def Info: images/2.jpg  used on input line 70.
+(pdftex.def)             Requested size: 481.79883pt x 271.01184pt.
+
+Overfull \hbox (51.7942pt too wide) in paragraph at lines 70--71
+ [] 
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 73--74
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
+
+ []
+
+
+Overfull \hbox (10.58012pt too wide) in paragraph at lines 78--79
+[]\OT1/cmr/m/n/10.95 La fonc-tion \OT1/cmtt/m/n/10.95 merge[]sort \OT1/cmr/m/n/
+10.95 se t^ache sim-ple-ment de di-viser la liste d'entr^^See, trier r^^Secursi
+vement
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--79
+
+ []
+
+<images/1.jpg, id=17, 1927.2pt x 1084.05pt>
+File: images/1.jpg Graphic file (type jpg)
+<use images/1.jpg>
+Package pdftex.def Info: images/1.jpg  used on input line 83.
+(pdftex.def)             Requested size: 481.79883pt x 271.01184pt.
+
+Overfull \hbox (51.7942pt too wide) in paragraph at lines 83--84
+ [] 
+ []
+
+[3 <./images/2.jpg>] [4 <./images/1.jpg>] [5] (./cr.aux) ) 
 Here is how much of TeX's memory you used:
- 2946 strings out of 478268
- 47819 string characters out of 5846346
- 341789 words of memory out of 5000000
- 21130 multiletter control sequences out of 15000+600000
- 477807 words of font info for 60 fonts, out of 8000000 for 9000
+ 2960 strings out of 478268
+ 48022 string characters out of 5846346
+ 338789 words of memory out of 5000000
+ 21141 multiletter control sequences out of 15000+600000
+ 477773 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,6n,62p,1056b,247s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-supe
-r/cm-super-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmcsc10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmtt10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm
-1095.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm17
-28.pfb>
-Output written on cr.pdf (3 pages, 102841 bytes).
+ 55i,6n,62p,508b,247s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2
+022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/20
+22/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/202
+2/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/202
+2/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2022/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2022/texmf
+-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
+Output written on cr.pdf (5 pages, 409457 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
- 33 compressed objects within 1 object stream
+ 58 PDF objects out of 1000 (max. 8388607)
+ 34 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
