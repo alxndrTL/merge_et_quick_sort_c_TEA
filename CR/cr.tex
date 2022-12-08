@@ -21,8 +21,6 @@ Dans un second temps, nous avons implémenté les fonctions \texttt{fusionsort} 
 
 Enfin, nous avons implémenter le tri fusion sur des listes chaînées.
 
-
-
 \section{Développement}
 %organisation du programme
 %organisation du groupe (qui a fait quoi)
@@ -92,14 +90,53 @@ Enfin, au cours du début de la semaine suivante, nous avons pu nous réunir afi
 
 \section{Résultats}
 %présentation des résultats, jeux d'essais, analyse, temps d'exec...
--comportement de nos algos sur des tableaux de grande taille (MAX\textunderscore ELT) \\
--tri rapide : mettre en évidence sa dégénérence \\
--tri rapide : performances une fois la dégénérence résoluée \\
--comparer performances avec qsort 
+Voici le comportement de nos algorithmes sur des tableaux de grande taille.
+On observe bien un comportement quasi-linéaire pour les tris fusion et rapide sur des tableaux de nombre aléatoires.
+
+\begin{center}
+\includegraphics[scale=0.6]{images/tri_fusion_comp.png}
+\end{center}
+
+\begin{center}
+\includegraphics[scale=0.6]{images/tri_fusion_ope.png}
+\end{center}
+
+\begin{center}
+\includegraphics[scale=0.6]{images/tri_rapide_aleat.png}
+\end{center}
+
+Toutefois, le tri rapide d'un tableau ordonné laisse place à un comportement en $\Theta(n^2)$ : c'est la dégénérescence du tri rapide. En effet, le tri rapide comme nous l'avons implémenté dans un premier temps choisit pour pivot le dernier élément du tableau. Ainsi, si le tableau est déjà trié, le pivot est le nombre le plus grand du tableau : les deux sous-tableaux construits sont donc le tableau vide et le tableau contenant tous les éléments sauf le pivot : on perd donc en efficacité. 
+
+\begin{center}
+\includegraphics[scale=0.6]{images/tri_rapide_degen.png}
+\end{center}
+
+L'idée pour pallier à ce problème est de choisir le pivot tel que les deux sous-tableaux soient équilibrés. Une solution simple est de prendre le pivot comme étant l'élément du milieu. C'est ce que nous avons fait et voici le résultat :
+
+\begin{center}
+\includegraphics[scale=0.6]{images/tri_rapide_fixed.png}
+\end{center}
+
+Une autre méthode consiste à prendre 3 éléments du tableau au hasard, et à choisir l'élément médian parmi ces 3. Nous n'avons pas testé cette technique.
+
+
+Nous avons enfin comparé nos implémentations des tris rapide et fusion avec la fonction \texttt{qsort} native de \textsc{C}. Pour cela, nous avons utilisé la bibliothèque \texttt{time} afin de mesurer le temps d'exécution de nos programmes. Les temps que l'on voit apparaître dans le tableau correspondent au tri de 100 tableaux de taille \texttt{MAX\textunderscore ELT = 250 000}.
+
+\begin{center}
+\begin{tabular}{||c c c||} 
+ \hline
+ \texttt{quicksort} & \texttt{fusionsort} & \texttt{qsort} \\ [0.5ex] 
+ \hline\hline
+11.2s & 12.1s & 4.1s \\ 
+\hline
+\end{tabular}
+\end{center}
+
+On remarque que l'implémentation native de $\texttt{qsort}$ bat largement nos deux implémentations.
 
 \section{Conclusion}
 %analyser les problèmes, perspectives
 
-\quad quad cc
+\quad \quad Nous avons pu, au cours de ce TEA, nous familiariser grandement avec le tri fusion et le tri rapide, ainsi que leurs performances globales. L'utilisation du tri fusion sur les listes chaînes nous a permis de nous rendre compte de l'avantage d'utiliser des listes afin de réduire l'empreinte mémoire de nos programmes.
 
 \end{document}  
