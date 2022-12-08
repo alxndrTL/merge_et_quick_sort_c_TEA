@@ -1,109 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//#include "elt.h"
-//#include "list.h"
+#include "tri_fusion_listes.h"
 
-typedef struct node {
-  int data;
-  struct node *next;
-} node;
-
-// Split the linked list into two halves
-void split(node *head, node **front, node **back){
-  node *fast, *slow;
-
-  //cas dans lequel la liste ne contient que un ou deux élements : il n'y a pas de split à faire
-  if (head == NULL || head->next == NULL) {
-    // If the list has 0 or 1 elements, there is no need to split it
-    *front = head;
-    *back = NULL;
-    return;
-  }
-
-  // Use the fast/slow pointer method to split the list in half
-  slow = head;
-  fast = head->next;
-  while(fast != NULL){
-    fast = fast->next;
-    if(fast != NULL){
-      slow = slow->next;
-      fast = fast->next;
-    }
-  }
-  *front = head;
-  *back = slow->next;
-  slow->next = NULL;
-}
-
-// Merge two sorted linked lists
-node * merge(node * first, node * second) {
-  node * result = NULL;
-
-  //cas de base
-  if (first == NULL){
-    return second;
-  } else if (second == NULL){
-    return first;
-  }
-
-  // Compare the data in the two lists and add the smaller element to the result list
-  if (first->data <= second->data){
-    result = first;
-    result->next = merge(first->next, second);
-  }else{
-    result = second;
-    result->next = merge(first, second->next);
-  }
-  return result;
-}
-
-// Sort a linked list using the merge sort algorithm
-void merge_sort(node **head) {
-  node *first, *second;
-
-  //cas de base où la liste ne contient que un ou deux éléments
-  if (*head == NULL || (*head)->next == NULL) {
-    return;
-  }
-
-  //split
-  split(*head, &first, &second);
-
-  //tri récursif de chaque moitié
-  merge_sort(&first);
-  merge_sort(&second);
-
-  //fusion
-  *head = merge(first, second);
-}
-
-void display_list(node *head) {
+void display_list(T_node *head) {
   if (head == NULL) {
     return;
   }
 
-  node *current = head;
+  T_node *current = head;
 
   while (current != NULL) {
     printf("%d ", current->data);
-    current = current->next;
+    current = current->pNext;
   }
   
   printf("\n");
 }
 
 int main(void){
-    node *head = NULL;
-    head = malloc(sizeof(node));
+    T_node *head = NULL;
+    head = malloc(sizeof(T_node));
     head->data = 5;
-    head->next = malloc(sizeof(node));
-    head->next->data = 3;
-    head->next->next = malloc(sizeof(node));
-    head->next->next->data = 8;
-    head->next->next->next = malloc(sizeof(node));
-    head->next->next->next->data = 1;
-    head->next->next->next->next = NULL;
+    head->pNext = malloc(sizeof(T_node));
+    head->pNext->data = 3;
+    head->pNext->pNext = malloc(sizeof(T_node));
+    head->pNext->pNext->data = 8;
+    head->pNext->pNext->pNext = malloc(sizeof(T_node));
+    head->pNext->pNext->pNext->data = 1;
+    head->pNext->pNext->pNext->pNext = NULL;
 
     display_list(head);
     merge_sort(&head);

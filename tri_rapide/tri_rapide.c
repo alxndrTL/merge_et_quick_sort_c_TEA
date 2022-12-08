@@ -1,6 +1,6 @@
 #include "tri_rapide.h"
 
-//T_data
+// ------------------ tri rapide sur un T_data ---------------- //
 
 void echanger(T_elt t[], int i1, int i2) {
 	int temp = t[i1];
@@ -54,7 +54,8 @@ void quickSort(T_data d, int n) { //n=nombre d'elements à partir du debut de d.
 	}
 }
 
-//qsort2
+// ------------------ réimplémentation de qsort ---------------- //
+
 void swap(void *a, void *b, size_t size) {
   void *temp = malloc(size);
   memcpy(temp, a, size);
