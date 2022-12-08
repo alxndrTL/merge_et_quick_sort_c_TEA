@@ -19,7 +19,6 @@ void fusionner(T_elt t [], int d, int m, int f){
 
 	i = 0; j = m - d + 1; k = 0;
 	while (i <= m - d && j <= f - d){
-		//if(aux[i] <= aux[j]){
 		if(comparer(aux[i], aux[j]) <= 0){
 			t[d + k++] = aux[i++];	// aux[i] est plus petit : on le place dans t 
 		}else{
@@ -46,7 +45,7 @@ void tri_fusion(T_elt t [], int debut, int fin){
 ////////////////////////////////////////// tri fusion sur un T_data //////////////////////////////////////
 
 typedef struct {
-	int elt; 
+	int elt;
 	int * pElt; 
 } T_data;
 
@@ -64,6 +63,19 @@ void showData(T_data data, int len){
         printf("%d -", tab[i]);
     }
 	printf("\n");
+}
+
+void tri_fusion(T_elt t [], int debut, int fin){
+	int milieu;
+	if (debut < fin){
+		milieu = (debut + fin)/2;
+
+		tri_fusion(t, debut, milieu);
+
+		tri_fusion(t, milieu + 1, fin);
+
+		fusionner(t, debut, milieu, fin);
+	}
 }
 
 void tri_fusion_2(T_data d, int n){ // n = nombre d'elements
