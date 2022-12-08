@@ -4,7 +4,7 @@
 #include "test_utils.h"
 #include "tri_rapide.h"
 
-//prototypes des ofnctions à tester 
+//prototypes des fonctions à tester :
 
 void showTabInt(int * p, int len){
 	for(int i=0; i<len; i++){
@@ -27,7 +27,7 @@ int main(void){
 
 	int e[6] = { 10, 50, 30, 20, 40, 60 };
     T_data data = genData(0, e);
-	quickSort(data, 6);
+	triRapide(data, 6);
 	showTabInt(data.pElt, 6);
 	
 	printf("*************** qsort de C *********\n");
@@ -40,7 +40,7 @@ int main(void){
 	printf("*************** qsort réimplémenté *********\n");
 
 	int intArray4[] = { 10, 50, 30, 20, 40, 60 };
-	qsort2(intArray4, 6, sizeof(int), comparerInt);
+	quicksort(intArray4, 6, sizeof(int), comparerInt);
 
 	showTabInt(intArray, 6);
 

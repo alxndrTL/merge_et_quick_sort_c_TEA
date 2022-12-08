@@ -25,7 +25,7 @@ void fusionner(T_elt t [], int d, int m, int f){
 	for (; j <= f - d; t[d + k++] = aux[j++]); // le reste du tableau droit
 }
 
-void tri_fusion_2(T_data d, int n){ // n = nombre d'elements
+void triFusion(T_data d, int n){ // n = nombre d'elements
 	int milieu;
 
 	T_elt * A = d.pElt; // Le tableau à trier
@@ -37,10 +37,10 @@ void tri_fusion_2(T_data d, int n){ // n = nombre d'elements
 	if (n > 1){
 		milieu = (Debut + Fin)/2;
 
-		tri_fusion_2(d, milieu-Debut+1);
+		triFusion(d, milieu-Debut+1);
 		//tri fusion du debut jusqu'a milieu
 
-		tri_fusion_2(genData(e, &A[milieu+1]), Fin-milieu);
+		triFusion(genData(e, &A[milieu+1]), Fin-milieu);
 		//tri fusion du milieu+1 jusqu'a fin
 
 		fusionner(A, Debut, milieu, Fin);
@@ -50,28 +50,28 @@ void tri_fusion_2(T_data d, int n){ // n = nombre d'elements
 
 // --------------- implémentation de fusionsort --------------- //
 
-void merge(void * arr, int left, int mid, int right, size_t size, int (comp)(const void *, const void *)){
+void merge(void * base, int gauche, int milieu, int droite, size_t size, int (* compar)(const void *, const void *)){
 	// taille des 2 tableaux temporaires (a gauche et a droite du milieu)
-	int n1 = mid - left + 1;
-	int n2 = right - mid;
+	int n1 = milieu - gauche + 1;
+	int n2 = droite - milieu;
 
 	// on crée les 2 tableaux temporaires
 	void * L = malloc(n1 * size);
 	void * R = malloc(n2 * size);
 
 	// on copie dans ces tableaux avec memcpy(desination, source, size source)
-	memcpy(L, arr + left * size, n1 * size);
-	memcpy(R, arr + (mid + 1) * size, n2 * size);
+	memcpy(L, base + gauche * size, n1 * size);
+	memcpy(R, base + (milieu + 1) * size, n2 * size);
 
 	// fusion de ces 2 tableaux
-	int i = 0, j = 0, k = left;
+	int i = 0, j = 0, k = gauche;
 	while (i < n1 && j < n2){
-		if (comp(L + i * size, R + j * size) <= 0){
-			memcpy(arr + k * size, L + i * size, size);
+		if (compar(L + i * size, R + j * size) <= 0){
+			memcpy(base + k * size, L + i * size, size);
 			i++;
 		}
 		else{
-			memcpy(arr + k * size, R + j * size, size);
+			memcpy(base + k * size, R + j * size, size);
 			j++;
 		}
 		k++;
@@ -79,14 +79,14 @@ void merge(void * arr, int left, int mid, int right, size_t size, int (comp)(con
 
 	// on copie le reste du tableau gauche
 	while (i < n1){
-		memcpy(arr + k * size, L + i * size, size);
+		memcpy(base + k * size, L + i * size, size);
 		i++;
 		k++;
 	}
 
 	// on copie le reste du tableau droit
 	while (j < n2){
-		memcpy(arr + k * size, R + j * size, size);
+		memcpy(base + k * size, R + j * size, size);
 		j++;
 		k++;
 	}
@@ -95,20 +95,20 @@ void merge(void * arr, int left, int mid, int right, size_t size, int (comp)(con
 	free(R);
 }
 
-void fusion_sort_rec(void * arr, int left, int right, size_t size, int (comp)(const void * , const void *)){
-	if (left < right){
-		int mid = left + (right - left) / 2;
+void fusionsort_rec(void * base, int gauche, int droite, size_t size, int (* compar)(const void * , const void *)){
+	if (gauche < droite){
+		int milieu = gauche + (droite - gauche) / 2;
 
-		// trie recursif des 2 tableaux (de left jusqu'a mid, de mid+1 jusqu'a right)
-		fusion_sort_rec(arr, left, mid, size, comp);
-		fusion_sort_rec(arr, mid + 1, right, size, comp);
+		// trie recursif des 2 tableaux (de gauche jusqu'a milieu, de milieu+1 jusqu'a droite)
+		fusionsort_rec(base, gauche, milieu, size, compar);
+		fusionsort_rec(base, milieu + 1, droite, size, compar);
 
 		// fusion des tableaux triés
-		merge(arr, left, mid, right, size, comp);
+		merge(base, gauche, milieu, droite, size, compar);
 	}
 }
 
 
-void fusionsort(void * arr, size_t n, size_t size, int (comp)(const void *, const void *)){
-	fusion_sort_rec(arr, 0, n - 1, size, comp);
+void fusionsort(void * base, size_t nmemb, size_t size, int (* compar)(const void *, const void *)){
+	fusionsort_rec(base, 0, nmemb - 1, size, compar);
 }

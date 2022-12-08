@@ -44,7 +44,7 @@ void showList(T_list l) {
 	// A faire en itératif 
 
 	if (l==NULL) {
-		printf("Pile vide !\n"); // pile vide ! 
+		printf("Liste vide !\n"); // liste vide ! 
 		return;
 	}
  

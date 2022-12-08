@@ -7,9 +7,9 @@
 // --------------- tri fusion sur un T_data --------------- //
 int comparer(T_elt e1, T_elt e2);
 void fusionner(T_elt t [], int d, int m, int f);
-void tri_fusion_2(T_data d, int n);
+void triFusion(T_data d, int n);
 
 // --------------- implémentation de fusionsort --------------- //
-void merge(void * arr, int left, int mid, int right, size_t size, int (comp)(const void *, const void *));
-void fusion_sort_rec(void * arr, int left, int right, size_t size, int (comp)(const void * , const void *));
-void fusionsort(void * arr, size_t n, size_t size, int (comp)(const void *, const void *));
+void merge(void * base, int gauche, int milieu, int droite, size_t size, int (* compar)(const void *, const void *));
+void fusionsort_rec(void * base, int gauche, int droite, size_t size, int (* compar)(const void * , const void *));
+void fusionsort(void * base, size_t nmemb, size_t size, int (* compar)(const void *, const void *));

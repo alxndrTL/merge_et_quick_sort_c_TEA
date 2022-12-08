@@ -5,10 +5,11 @@
 #include "tri_fusion.h"
 
 
-int intComparator (const void * first, const void * second ){
-    int firstInt = * (const int *) first;
-    int secondInt = * (const int *) second;
-    return firstInt - secondInt;
+//fonction à passer à fusionsort pour comparer (dans le cas où les éléments sont des int)
+int comparerInt(const void * e1, const void * e2){
+    int e1_int = * (const int *) e1;
+    int e2_int = * (const int *) e2;
+    return e1_int - e2_int;
 }
 
 void showTabInt(int * p, int len){
@@ -21,15 +22,15 @@ void showTabInt(int * p, int len){
 int main(void){
 	printf("********** tri fusion sur T_data ************ \n");
 
-	int f[6] = { 10, 50, 30, 20, 40, 60 };
-    T_data data2 = genData(0, f);
-	tri_fusion_2(data2, 6);
-	showTabInt(data2.pElt, 6);
+	int tab1[6] = {10, 50, 30, 20, 40, 60};
+    T_data data = genData(0, tab1);
+	triFusion(data, 6);
+	showTabInt(data.pElt, 6);
 
 	printf("*************** fusionsort ***********\n");
-	int arr[] = {5, 2, 4, 6, 1, 3};
-	fusionsort(arr, 6, sizeof(int), intComparator);
-	showTabInt(arr, 6);
+	int tab2[] = {10, 50, 30, 20, 40, 60};
+	fusionsort(tab2, 6, sizeof(int), comparerInt);
+	showTabInt(tab2, 6);
 
     return 0;
 }
