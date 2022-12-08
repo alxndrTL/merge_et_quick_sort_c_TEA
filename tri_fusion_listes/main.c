@@ -10,6 +10,6 @@ int main(void){
     head = addNode(5, head);
 
     showList(head);
-    triFusion(&head);
+    triFusionListes(&head);
     showList(head);
 }

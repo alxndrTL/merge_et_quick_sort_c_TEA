@@ -1,18 +1,18 @@
 #include "tri_fusion_listes.h"
 
-// Split the linked list into two halves
+// couper la liste de tête head en deux listes, de têtes respectives head_1 et head_2
 void couper(T_node *head, T_node **head_1, T_node **head_2){
+  //les pointeurs qui vont parcourir la liste
+  //slow parcourt une maille par une maille, fast deux mailles par deux mailles
   T_node *fast, *slow;
 
   //cas dans lequel la liste ne contient que un ou deux élements : il n'y a pas de split à faire
   if (head == NULL || head->pNext == NULL) {
-    // If the list has 0 or 1 elements, there is no need to split it
     *head_1 = head;
     *head_2 = NULL;
     return;
   }
 
-  // Use the fast/slow pointer method to split the list in half
   slow = head;
   fast = head->pNext;
 
@@ -25,12 +25,17 @@ void couper(T_node *head, T_node **head_1, T_node **head_2){
     }
   }
 
+  //fast est arrivé en fin de liste : parcourt terminé
+
+  //la tete de la premiere liste (liste de gauche) est la meme que la tête de la liste d'entrée 
   *head_1 = head;
+
+  //la tete de la seconde liste (liste de droite) est la maille suivant slow
   *head_2 = slow->pNext;
-  slow->pNext = NULL;
+  slow->pNext = NULL; //pour séparer les 2 listes
 }
 
-// Merge two sorted linked lists
+// fusionner deux listes triées
 T_node * fusion(T_node * head_1, T_node * head_2){
   T_node * head = NULL;
 
@@ -41,7 +46,7 @@ T_node * fusion(T_node * head_1, T_node * head_2){
     return head_1;
   }
 
-  // Compare the data in the two lists and add the smaller element to the result list
+  //comme les listes sont triées, on n'a besoin de regarder que l'élément présent de la maille de la tête
   if (head_1->data <= head_2->data){
     head = head_1;
     head->pNext = fusion(head_1->pNext, head_2);
@@ -52,8 +57,8 @@ T_node * fusion(T_node * head_1, T_node * head_2){
   return head;
 }
 
-// Sort a linked list using the merge sort algorithm
-void triFusion(T_node **head){
+// tri fusion d'une liste chaînée
+void triFusionListes(T_node **head){
   T_node *head_1, *head_2;
 
   //cas de base où la liste ne contient que un ou deux éléments
@@ -65,8 +70,8 @@ void triFusion(T_node **head){
   couper(*head, &head_1, &head_2);
 
   //tri récursif de chaque moitié
-  triFusion(&head_1);
-  triFusion(&head_2);
+  triFusionListes(&head_1);
+  triFusionListes(&head_2);
 
   //fusion
   *head = fusion(head_1, head_2);

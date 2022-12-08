@@ -35,13 +35,13 @@ Enfin, nous avons implémenter le tri fusion sur des listes chaînées.
 Pour cette partie, la première partie du travail a été de transformer la fonction d'en-tête
 
 $$
-\texttt{void tri\textunderscore fusion(T\textunderscore elt t [], int debut, int fin)}
+\texttt{void triFusion(T\textunderscore elt t [], int debut, int fin)}
 $$
 
 en la fonction
 
 $$
-\texttt{void tri\textunderscore fusion(T\textunderscore data d, int n)}
+\texttt{void triFusion(T\textunderscore data d, int n)}
 $$
 
 où \texttt{n} désigne le nombre d'éléments à considérer à partir du début du tableau passé. Il faut donc, au moment d'appeler cette deuxième fonction, envoyer la bonne partie du tableau (et non pas le tableau entier comme c'est le cas pour la première fonction). \\
@@ -55,14 +55,14 @@ Le développement de \texttt{fusionsort} a requis celui de la fonction \texttt{m
 
 Le même travail de conversion a été effectué afin de rendre compatible la fonction vue en TD au type \texttt{T\textunderscore data}. \\
 
-La fonction \texttt{quicksort} reprend les mêmes idées que \texttt{tri\textunderscore rapide}. Cependant, l'implémentation concrète du tri a été amené à changer. La plus grosse difficulté rencontré a été que le tableau passé en entrée est de type \texttt{void *} (i.e. type non déterminé).
+La fonction \texttt{quicksort} reprend les mêmes idées que \texttt{triRapide}. Cependant, l'implémentation concrète du tri a été amené à changer. La plus grosse difficulté rencontré a été que le tableau passé en entrée est de type \texttt{void *} (i.e. type non déterminé).
 Cela a notamment posé un problème dans la fonction annexe \texttt{echanger} qui a pour but d'échanger 2 éléments d'un tableau. En effet, le compilateur nous empêche d'assigner une valeur à type \texttt{void *} : la solution pour pallier à cela a été d'utiliser la fonction native \texttt{memcpy} afin de ne pas avoir à assigner une valeur. 
 
 \subsection{Tri rapide sur une liste chaînée}
 
 \quad \quad Le dossier \texttt{tri\textunderscore fusion\textunderscore listes} recense notre travail relatif au tri fusion sur une liste chaînée.
 
-Nous nous sommes d'abord concentré sur la fonction \texttt{split}, qui a pour but de diviser en 2 moitié une liste chaînée. Cette fonction, au lieu de retourner 2 valeurs qui sont les têtes des 2 listes, modifie 2 pointeurs (\texttt{T\textunderscore node **head\textunderscore 1} et \texttt{T\textunderscore node **head\textunderscore 2}) qui, une fois la fonction terminée, pointeront sur les 2 listes divisées.
+Nous nous sommes d'abord concentré sur la fonction \texttt{couper}, qui a pour but de diviser en 2 moitié une liste chaînée. Cette fonction, au lieu de retourner 2 valeurs qui sont les têtes des 2 listes, modifie 2 pointeurs (\texttt{T\textunderscore node **head\textunderscore 1} et \texttt{T\textunderscore node **head\textunderscore 2}) qui, une fois la fonction terminée, pointeront sur les 2 listes divisées.
 
 Voici un schéma explicatif qui montre le déroulement de cette division : 
 
@@ -73,9 +73,9 @@ Voici un schéma explicatif qui montre le déroulement de cette division :
 \texttt{s} et \texttt{f} correspondent aux variables \texttt{slow} et \texttt{fast} de notre code : ces pointeurs parcourent la liste, mais un le fait de manière "lente" (une maille à la fois) et l'autre le fait plus rapidement (deux mailles à la fois). Il s'en suit que, lorsqu'on les fait parcourir la liste, à la fin, lorsque \texttt{f} atteint le bout de la liste, \texttt{s} se trouve au milieu de la liste. On s'en sert alors pour découper la liste en deux. On peut comparer cette situation à la suivante : deux personnes montent le même escalier, et, quand la première personne monte une marche, la seconde en monte deux. Alors, lorsque la seconde personne sera arrivée en haut de l'escalier, la première en sera à la moitié. \\
 
 
-La fonction \texttt{merge} fusionne 2 listes chaînées supposées triées. Le principe est le même qu'avec le tableau : on compare les premiers éléments de chacun des deux listes à fusionner, on sélectionne le petit, puis on recommence... jusqu'à épuisement des deux listes. \\
+La fonction \texttt{fusion} fusionne 2 listes chaînées supposées triées. Le principe est le même qu'avec le tableau : on compare les premiers éléments de chacun des deux listes à fusionner, on sélectionne le petit, puis on recommence... jusqu'à épuisement des deux listes. \\
 
-La fonction \texttt{merge\textunderscore sort} se tâche simplement de diviser la liste d'entrée, trier récursivement les deux listes obtenues, et de les fusionner. \\
+La fonction \texttt{triFusionListes} se tâche simplement de diviser la liste d'entrée, trier récursivement les deux listes obtenues, et de les fusionner. \\
 
 Voici un schéma permettant d'illustrer le tri fusion sur une liste chaînée :
 
