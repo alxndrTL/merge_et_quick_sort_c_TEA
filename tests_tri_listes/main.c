@@ -78,24 +78,18 @@ void merge_sort(node **head) {
   *head = merge(first, second);
 }
 
-// function to display the elements of the linked list
 void display_list(node *head) {
-  // check if the linked list is empty
   if (head == NULL) {
-    printf("Linked list is empty\n");
     return;
   }
 
-  // create a pointer to traverse the linked list
   node *current = head;
 
-  // loop through the linked list and print each element
   while (current != NULL) {
     printf("%d ", current->data);
     current = current->next;
   }
-
-  // print a new line after all the elements have been printed
+  
   printf("\n");
 }
 

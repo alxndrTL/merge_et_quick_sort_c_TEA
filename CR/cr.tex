@@ -70,7 +70,7 @@ Voici un schéma explicatif qui montre le déroulement de cette division :
 \includegraphics[scale=0.25]{images/2.jpg}
 \end{center}
 
-\texttt{s} et \texttt{f} correspondent aux variables \texttt{slow} et \texttt{fast} de notre code : ces pointeurs parcourent la liste, mais un le fait de manière "lente" (une maille à la fois) et l'autre le fait plus rapidement (deux mailles à la fois). Il s'en suit que, lorsqu'on les fait parcourir la liste, à la fin, lorsque \texttt{f} atteint le bout de la liste, \texttt{s} se trouve au milieu de la liste. On s'en sert alors pour découper la liste en deux. \\
+\texttt{s} et \texttt{f} correspondent aux variables \texttt{slow} et \texttt{fast} de notre code : ces pointeurs parcourent la liste, mais un le fait de manière "lente" (une maille à la fois) et l'autre le fait plus rapidement (deux mailles à la fois). Il s'en suit que, lorsqu'on les fait parcourir la liste, à la fin, lorsque \texttt{f} atteint le bout de la liste, \texttt{s} se trouve au milieu de la liste. On s'en sert alors pour découper la liste en deux. On peut comparer cette situation à la suivante : deux personnes montent le même escalier, et, quand la première personne monte une marche, la seconde en monte deux. Alors, lorsque la seconde personne sera arrivée en haut de l'escalier, la première en sera à la moitié. \\
 
 
 La fonction \texttt{merge} fusionne 2 listes chaînées supposées triées. Le principe est le même qu'avec le tableau : on compare les premiers éléments de chacun des deux listes à fusionner, on sélectionne le petit, puis on recommence... jusqu'à épuisement des deux listes. \\
