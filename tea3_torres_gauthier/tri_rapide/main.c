@@ -70,6 +70,7 @@ int main(void){
 	Test_FnV2("TRI RAPIDE", triRapide, tab, 512, m[MODE_TAB_ALEATOIRE]);
 	*/
 
+	/*
 	printf("**************** timing ******************\n");
 
 	time_t start = time(NULL);
@@ -85,6 +86,21 @@ int main(void){
 
 	time_t end = time(NULL);
 	printf("%f\n", difftime(end, start));
+	*/
+
+	printf("*********** test tri ************\n");
+	T_elt montab[20];
+	for(int i = 0; i<20; i++){
+		montab[i] = i;
+	}
+
+	T_data data4 = {0, montab};
+
+	stats.nbComparisons = 0;
+
+	triRapide(data4, 20);
+	showTabInt(data4.pElt, 20);
+	printf("%llu\n", stats.nbComparisons);
 	
     return 0;
 }
