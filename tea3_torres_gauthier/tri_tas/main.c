@@ -41,6 +41,7 @@ int main(void){
 	heap_sort(data, 6);
 	showTabInt(data.pElt, 6);
 
+	/*
     printf("************** graphiques *************** \n");
 
 	T_elt tab [MAX_ELT];
@@ -48,9 +49,9 @@ int main(void){
 	srand((unsigned int)time(NULL));
 	Test_Fn("TRI TAS", heap_sort, tab, MAX_ELT/10, m[MODE_TAB_ALEATOIRE]);
 	Test_FnV2("TRI TAS", heap_sort, tab, 512, m[MODE_TAB_ALEATOIRE]);
-    
+    */
 	
-	/*
+	
 	printf("**************** timing ******************\n");
 
 	time_t start = time(NULL);
@@ -61,12 +62,12 @@ int main(void){
 			tab2[i] = rand();
 		}
 	
-		heap_sort(tab2, MAX_ELT, sizeof(int), comparerInt);
+		heap_sort(genData(0, tab2), MAX_ELT);
 	}
 
 	time_t end = time(NULL);
 	printf("%f\n", difftime(end, start));
-	*/
+	
 
     return 0;
 }
