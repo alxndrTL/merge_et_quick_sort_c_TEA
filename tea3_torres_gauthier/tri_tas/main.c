@@ -4,10 +4,7 @@
 #include <unistd.h>
 
 #include "test_utils.h"
-#include "tri_fusion.h"
-
-//prototypes des fonctions à tester :
-void triFusion(T_data d, int n);
+#include "tri_tas.h"
 
 T_mode m[] = {
 	{MODE_TAB_ORDONNE, "ordonne", 0, 1}, 
@@ -36,27 +33,22 @@ int comparerInt(const void * e1, const void * e2){
 }
 
 int main(void){
-	printf("********** tri fusion sur T_data ************ \n");
+	printf("********** tri tas sur T_data ************ \n");
 
 	int tab1[6] = {10, 50, 30, 20, 40, 60};
     T_data data = genData(0, tab1);
 	
-	triFusion(data, 6);
+	heap_sort(data, 6);
 	showTabInt(data.pElt, 6);
 
-	printf("*************** fusionsort ***********\n");
-	int tab2[] = {10, 50, 30, 20, 40, 60};
-
-	fusionsort(tab2, 6, sizeof(int), comparerInt);
-	showTabInt(tab2, 6);
-
-	printf("************** graphiques *************** \n");
+    printf("************** graphiques *************** \n");
 
 	T_elt tab [MAX_ELT];
 	outputPath = "output";
 	srand((unsigned int)time(NULL));
-	Test_Fn("TRI FUSION", triFusion, tab, MAX_ELT/10, m[MODE_TAB_ORDONNE]);
-	Test_FnV2("TRI FUSION", triFusion, tab, 512, m[MODE_TAB_ORDONNE]);
+	Test_Fn("TRI TAS", heap_sort, tab, MAX_ELT/10, m[MODE_TAB_ALEATOIRE]);
+	Test_FnV2("TRI TAS", heap_sort, tab, 512, m[MODE_TAB_ALEATOIRE]);
+    
 	
 	/*
 	printf("**************** timing ******************\n");
@@ -69,7 +61,7 @@ int main(void){
 			tab2[i] = rand();
 		}
 	
-		fusionsort(tab2, MAX_ELT, sizeof(int), comparerInt);
+		heap_sort(tab2, MAX_ELT, sizeof(int), comparerInt);
 	}
 
 	time_t end = time(NULL);
